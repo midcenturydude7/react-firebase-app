@@ -35,20 +35,30 @@ function Auth() {
   };
 
   return (
-    <div>
-      <form className="form">
+    <div className="form-container">
+      <form className="form" action="#">
+        <h1 className="form-title">Log in</h1>
         <input
+          className="form-input"
+          type="text"
           placeholder="Email..."
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
-          placeholder="Password..."
+          className="form-input"
           type="password"
+          placeholder="Password..."
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button onClick={signIn}>Sign In</button>
-        <button onClick={signInWithGoogle}>Sign with Google</button>
-        <button onClick={logout}>Logout</button>
+        <button className="btn" type="text" onClick={signIn}>
+          Sign In
+        </button>
+        <button className="btn" type="text" onClick={signInWithGoogle}>
+          Sign with Google
+        </button>
+        <button className="btn logout" type="text" onClick={logout}>
+          Logout
+        </button>
       </form>
     </div>
   );
