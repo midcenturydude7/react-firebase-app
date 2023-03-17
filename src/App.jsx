@@ -1,8 +1,12 @@
 import React from "react";
-import "./App.css";
+import Auth from "./components/Auth";
 
 function App() {
-  return <div className="App">Hello, World!</div>;
+  return (
+    <div className="layout">
+      <Auth />
+    </div>
+  );
 }
 
 export default App;
