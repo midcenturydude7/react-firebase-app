@@ -37,7 +37,7 @@ function Auth() {
   return (
     <div className="form-container">
       <form className="form" action="#">
-        <h1 className="form-title">Log in</h1>
+        <h1 className="form-title">Sign in</h1>
         <input
           className="form-input"
           type="text"
