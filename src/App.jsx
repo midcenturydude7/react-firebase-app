@@ -56,37 +56,46 @@ function App() {
   return (
     <div className="layout">
       <Auth />
-
-      <div>
-        <input
-          type="text"
-          placeholder="Movie title..."
-          onChange={(e) => setNewMovieTitle(e.target.value)}
-        />
-        <input
-          type="number"
-          placeholder="Release year..."
-          onChange={(e) => setNewReleaseDate(Number(e.target.value))}
-        />
-        <input
-          type="checkbox"
-          checked={isNewMovieOscar}
-          onChange={(e) => setIsNewMovieOscar(e.target.checked)}
-        />
-        <label>Received an Oscar</label>
-        <button onClick={onSubmitMovie}>Submit Movie</button>
-      </div>
-
-      <div>
-        {movieList.map((movie) => (
-          <div key={movie.id}>
-            <h1 style={{ color: movie.receivedAnOscar ? "green" : "red" }}>
-              {movie.title}
-            </h1>
-            <p>Year released: {movie.releaseDate}</p>
-            <button onClick={() => deleteMovie(movie.id)}>Delete Movie</button>
+      <div className="movie-list-container">
+        <div className="movie-list">
+          <h1 className="form-title">Movie List</h1>
+          <input
+            type="text"
+            placeholder="Movie title..."
+            onChange={(e) => setNewMovieTitle(e.target.value)}
+          />
+          <input
+            type="number"
+            placeholder="Release year..."
+            onChange={(e) => setNewReleaseDate(Number(e.target.value))}
+          />
+          <div className="movie-checkbox-container">
+            <input
+              className="movie-checkbox"
+              type="checkbox"
+              checked={isNewMovieOscar}
+              onChange={(e) => setIsNewMovieOscar(e.target.checked)}
+            />
+            <label className="oscar-label">Received an Oscar</label>
           </div>
-        ))}
+          <button className="btn" type="text" onClick={onSubmitMovie}>
+            Submit Movie
+          </button>
+        </div>
+        <div className="movie-list">
+          <h1 className="form-title">Movie List Output</h1>
+          {movieList.map((movie) => (
+            <div key={movie.id}>
+              <h1 style={{ color: movie.receivedAnOscar ? "green" : "red" }}>
+                {movie.title}
+              </h1>
+              <p>Year released: {movie.releaseDate}</p>
+              <button className="btn" onClick={() => deleteMovie(movie.id)}>
+                Delete Movie
+              </button>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
