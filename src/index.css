@@ -26,13 +26,14 @@ body {
 }
 
 .form,
-.movie-list {
+.movie-list,
+.image-upload {
   width: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid #808080;
+  border: 1px solid #80808048;
   border-radius: 5px;
   padding: 3.5em 2em;
   background: #8080803d;
@@ -42,21 +43,31 @@ body {
   margin-bottom: 0.75em;
 }
 
-.movie-list + .movie-list {
+.movie-list + .movie-list,
+.image-upload {
   margin-top: 2em;
 }
 
-.movie-list:last-child {
+.movie-list:last-child,
+.image-upload {
   margin-bottom: 2em;
 }
 
 .movie-output {
-  margin: 0;
-  padding: 0;
+  width: 90%;
+  margin: 0 0 1em 0;
+  padding: 0 0 1em 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  border-bottom: 1px solid #8f8f8f60;
+}
+
+.movie-output:last-child {
+  margin: 0;
+  padding: 0;
+  border-bottom: none;
 }
 
 .movie-checkbox-container {
@@ -84,6 +95,7 @@ body {
 input[type="text"],
 input[type="password"],
 input[type="number"],
+input[type="file"],
 button[type="text"] {
   font-family: inherit;
   font-size: inherit;
@@ -97,13 +109,13 @@ input {
   width: 300px;
   margin-bottom: 1.5em;
   padding: 0.5em;
-  border: 1px solid #808080;
+  border: 1px solid #80808062;
   border-radius: 5px;
 }
 
 .btn {
-  padding: 0.4em;
-  border: 1px solid #808080;
+  padding: 0.4em 0.75em;
+  border: 1px solid #80808062;
   border-radius: 5px;
 }
 
@@ -111,6 +123,15 @@ input {
   margin-top: 1em;
 }
 
+.btn:hover {
+  color: white;
+  background: black;
+}
+
 .movie-btn {
   margin: 1em 0;
+}
+
+.movie-update-btn {
+  margin-bottom: 1.25em;
 }

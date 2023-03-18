@@ -1,21 +1,61 @@
 import React, { useEffect } from "react";
 import Auth from "./components/Auth";
-import { db } from "./config/firebase";
+import { db, auth, storage } from "./config/firebase";
 import {
   getDocs,
   collection,
   addDoc,
   deleteDoc,
+  updateDoc,
   doc,
 } from "firebase/firestore";
+import { ref, uploadBytes } from "firebase/storage";
 
 function App() {
   const [movieList, setMovieList] = React.useState([]);
   const [newMovieTitle, setNewMovieTitle] = React.useState("");
   const [newReleaseDate, setNewReleaseDate] = React.useState(0);
   const [isNewMovieOscar, setIsNewMovieOscar] = React.useState(false);
+  const [updatedTitle, setUpdatedTitle] = React.useState("");
+  const [fileUpload, setFileUpload] = React.useState(null);
 
   const moviesCollectionRef = collection(db, "movies");
+
+  const onSubmitMovie = async () => {
+    try {
+      await addDoc(moviesCollectionRef, {
+        title: newMovieTitle,
+        releaseDate: newReleaseDate,
+        receivedAnOscar: isNewMovieOscar,
+        userId: auth?.currentUser?.uid,
+      });
+      getMovieList();
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const deleteMovie = async (id) => {
+    const movieDoc = doc(db, "movies", id);
+    await deleteDoc(movieDoc);
+    getMovieList();
+  };
+
+  const updateMovieTitle = async (id) => {
+    const movieDoc = doc(db, "movies", id);
+    await updateDoc(movieDoc, { title: updatedTitle });
+    getMovieList();
+  };
+
+  const uploadFile = async () => {
+    if (!uploadFile) return;
+    const filesFolderRef = ref(storage, `projectFiles/${fileUpload.name}`);
+    try {
+      await uploadBytes(filesFolderRef, fileUpload);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   const getMovieList = async () => {
     try {
@@ -33,25 +73,6 @@ function App() {
   useEffect(() => {
     getMovieList();
   }, []);
-
-  const onSubmitMovie = async () => {
-    try {
-      await addDoc(moviesCollectionRef, {
-        title: newMovieTitle,
-        releaseDate: newReleaseDate,
-        receivedAnOscar: isNewMovieOscar,
-      });
-      getMovieList();
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  const deleteMovie = async (id) => {
-    const movieDoc = doc(db, "movies", id);
-    await deleteDoc(movieDoc);
-    getMovieList();
-  };
 
   return (
     <div className="layout">
@@ -98,8 +119,29 @@ function App() {
                 onClick={() => deleteMovie(movie.id)}>
                 Delete Movie
               </button>
+              <input
+                type="text"
+                placeholder="Edit Movie title..."
+                onChange={(e) => setUpdatedTitle(e.target.value)}
+              />
+              <button
+                className="btn movie-update-btn"
+                type="text"
+                onClick={() => updateMovieTitle(movie.id)}>
+                Update movie title
+              </button>
             </div>
           ))}
+        </div>
+        <div className="image-upload">
+          <input
+            className="file-upload"
+            type="file"
+            onChange={(e) => setFileUpload(e.target.files[0])}
+          />
+          <button className="btn" type="text" onClick={uploadFile}>
+            Upload File
+          </button>
         </div>
       </div>
     </div>
