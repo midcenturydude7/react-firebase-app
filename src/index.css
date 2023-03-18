@@ -15,6 +15,7 @@ body {
   flex-direction: column;
   height: 100vh;
   padding: 2em 0;
+  margin-bottom: 2em;
 }
 
 .form-container,
@@ -45,16 +46,34 @@ body {
   margin-top: 2em;
 }
 
-.movie-checkbox-container {
-  width: 250px;
+.movie-list:last-child {
+  margin-bottom: 2em;
+}
+
+.movie-output {
+  margin: 0;
+  padding: 0;
   display: flex;
-  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.movie-checkbox-container {
+  width: 70%;
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
 
 .movie-checkbox {
-  margin: 0;
+  width: auto;
+  margin: 0 1em;
   padding: 0;
+}
+
+.movie-title {
+  text-align: center;
 }
 
 .oscar-label {
@@ -90,4 +109,8 @@ input {
 
 .btn + .btn {
   margin-top: 1em;
+}
+
+.movie-btn {
+  margin: 1em 0;
 }

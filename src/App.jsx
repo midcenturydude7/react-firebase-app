@@ -78,19 +78,24 @@ function App() {
             />
             <label className="oscar-label">Received an Oscar</label>
           </div>
-          <button className="btn" type="text" onClick={onSubmitMovie}>
+          <button className="btn movie-btn" type="text" onClick={onSubmitMovie}>
             Submit Movie
           </button>
         </div>
         <div className="movie-list">
           <h1 className="form-title">Movie List Output</h1>
           {movieList.map((movie) => (
-            <div key={movie.id}>
-              <h1 style={{ color: movie.receivedAnOscar ? "green" : "red" }}>
+            <div className="movie-output" key={movie.id}>
+              <h1
+                className="movie-title"
+                style={{ color: movie.receivedAnOscar ? "green" : "red" }}>
                 {movie.title}
               </h1>
               <p>Year released: {movie.releaseDate}</p>
-              <button className="btn" onClick={() => deleteMovie(movie.id)}>
+              <button
+                className="btn movie-btn"
+                type="text"
+                onClick={() => deleteMovie(movie.id)}>
                 Delete Movie
               </button>
             </div>
