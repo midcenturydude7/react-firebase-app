@@ -25,3 +25,15 @@ dist-ssr
 
 # Firebase
 firebase.js
+.firebase
+.firebaserc
+firebase.json
+
+#Log files
+log.txt
+
+# Github
+.github
+
+# Build folder
+build
